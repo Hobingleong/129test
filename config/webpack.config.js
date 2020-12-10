@@ -1,12 +1,14 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
     entry: {
-        app: './src/app.js',
-        arry: './src/arry.js'
+        // tpl2: './src/tpl2.js',
+        // app: './src/app.js',
+        // arry: './src/arry.js'
         // img: './src/img.js'
-        // index: './src/index.css',
+        index: './src/index.js'
         // index: './src/index.less'
     },
     output: {
@@ -16,7 +18,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
-        port: 9000,
+        port: 8080,
         open: true
     },
     module: {
@@ -88,18 +90,33 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({
-            title: '<>',
-            template: './src/tpl.html',
+            title: 'document',
+            // template: './src/templates/tpl.html',
+            template: './src/templates/index.html',
             inject: 'head',
             minify: {
                 removeComments: false,
                 removeAttributeQuotes: false,
                 collapseWhitespace: false
             },
-            filename: 'index_1.html'
+            chunks:['index'],
+            filename: 'index.html'
         }),
+        // new HTMLWebpackPlugin({
+        //     title: 'document',
+        //     template: './src/templates/tpl2.html',
+        //     inject: 'head',
+        //     minify: {
+        //         removeComments: false,
+        //         removeAttributeQuotes: false,
+        //         collapseWhitespace: false
+        //     },
+        //     chunks:['tpl2'],
+        //     filename: 'tpl2.html'
+        // }),
         new miniCssExtractPlugin({
             filename: '[name].css'
-        })
+        }),
+        new CleanWebpackPlugin()
     ]
 }

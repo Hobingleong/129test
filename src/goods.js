@@ -1,1 +1,1 @@
-import index from './index.css'
+import index from './css/index.css'

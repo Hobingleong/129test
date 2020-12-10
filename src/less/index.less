@@ -1,0 +1,26 @@
+
+
+ul {
+    list-style: none;
+    display: flex;
+
+    li {
+        width: 0;
+        height: 0;
+    }
+}
+
+.mixi(@size, @col, @direction, @index) {
+    ul li:nth-child(@{index}){
+        border: @size solid transparent;
+        border-@{direction}-color: @col;
+    }
+}
+.mixi(40px, red, right, 1);
+.mixi(30px, blue, right, 2);
+.mixi(40px, red, top, 3);
+.mixi(30px, black, top, 4);
+.mixi(40px, red, left, 5);
+.mixi(30px, blue, left, 6);
+.mixi(40px, red, bottom, 7);
+.mixi(30px, blue, bottom, 8);
